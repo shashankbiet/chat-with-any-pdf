@@ -1,21 +1,22 @@
 
 
-# 📄 PDF Question Answering with LangChain (Local LLM)
+# 📄 Chat with Your PDFs Using Local RAG
 
-This project demonstrates how to build a **PDF-based Question Answering (QA) system** using **LangChain**, **FAISS**, **Hugging Face embeddings**, and a **local LLM served via LM Studio**.
+This project demonstrates how to build a Retrieval-Augmented Generation (RAG)–powered PDF Question Answering system using LangChain, FAISS, Hugging Face embeddings, and a locally hosted LLM served via Ollama/LM Studio.
 
-The application loads a PDF, splits it into chunks, stores embeddings in a vector database, retrieves relevant content for a user query, and generates answers using a locally hosted language model.
+The application ingests PDF documents, splits them into semantically meaningful chunks, converts them into vector embeddings, and stores them in a FAISS vector database. When a user asks a question, the system retrieves the most relevant content and generates grounded answers using a local language model—without relying on any external APIs.
 
 ---
 
 ## 🚀 Features
 
 - Load and process PDF documents  
-- Chunk and embed text using sentence transformers  
-- Store and search embeddings with FAISS  
+- Split text into optimized, overlapping chunks
+- Generate embeddings using Hugging Face sentence transformers
+- Store and search vectors efficiently with FAISS
 - Retrieve relevant document context  
-- Ask questions interactively via CLI  
-- Use a **local LLM** (no OpenAI API required)
+- Interactive question answering via CLI 
+- Fully local execution using a local LLM (no OpenAI API required)
 
 ---
 
@@ -29,9 +30,31 @@ PDF → Text Chunks → Embeddings → FAISS Vector Store
                          ↓
                      Answer
 
+#### This architecture ensures:
+
+- Reduced hallucinations
+- Answers grounded in source documents
+- Scalability to large PDFs
+- Offline and privacy-preserving operation
+
 --- 
 
-## 🖥️ Local LLM Setup (LM Studio)
+## 🖥️ Local LLM Setup 
+
+### Ollama
+
+1. Install **Ollama**
+2. Download a supported chat model  
+   *(e.g., Gemma 3, LLaMA 3, Mistral, Phi-3)*
+   ```bash
+   ollama pull gemma3:1b
+   ```
+
+3. Start the local server:
+   
+   Ollama runs automatically when a model is invoked.
+
+### LM Studio
 
 1. Install **LM Studio**
 2. Download a supported chat model  
@@ -42,7 +65,6 @@ PDF → Text Chunks → Embeddings → FAISS Vector Store
 > ⚠️ **Note:**  
 > The application uses `ChatOpenAI` **only as a compatible client interface** for LM Studio.  
 > It does **not** connect to OpenAI’s hosted API.
-
 
 ---
 

@@ -4,6 +4,8 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_community.chat_models import ChatOllama
+
 
 # 1. Load PDF
 loader = PyPDFLoader("sample.pdf")
@@ -27,11 +29,19 @@ vectorstore = FAISS.from_documents(chunks, embeddings)
 # 5. Create retriever
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-# 6. Local LLM (LM Studio)
-llm = ChatOpenAI(
-    openai_api_base="http://localhost:1234/v1",
-    openai_api_key="lm-studio",
-    model_name="local-model",
+# 6. Load Local LLM 
+
+# LM Studio
+# llm = ChatOpenAI(
+#     openai_api_base="http://localhost:1234/v1",
+#     openai_api_key="lm-studio",
+#     model_name="local-model",
+#     temperature=0.2
+# )
+
+# Ollama
+llm = ChatOllama(
+    model="gemma3:1b",
     temperature=0.2
 )
 
