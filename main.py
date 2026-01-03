@@ -4,7 +4,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 
 
 # 1. Load PDF
