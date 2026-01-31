@@ -1,22 +1,77 @@
 
 
-# 📄 Chat with Your PDFs Using Local RAG
+# 📄 Chat With Any PDF
 
-This project demonstrates how to build a Retrieval-Augmented Generation (RAG)–powered PDF Question Answering system using LangChain, FAISS, Hugging Face embeddings, and a locally hosted LLM served via Ollama/LM Studio.
+A lightweight Document Question Answering (QA) project that allows users to chat with the contents of any PDF using local LLMs.
 
-The application ingests PDF documents, splits them into semantically meaningful chunks, converts them into vector embeddings, and stores them in a FAISS vector database. When a user asks a question, the system retrieves the most relevant content and generates grounded answers using a local language model—without relying on any external APIs.
+This project is intentionally designed without a persistent vector database to demonstrate how document QA systems work at a foundational level before introducing heavier infrastructure.
 
 ---
 
-## 🚀 Features
+## 🚀 Overview
 
-- Load and process PDF documents  
-- Split text into optimized, overlapping chunks
-- Generate embeddings using Hugging Face sentence transformers
-- Store and search vectors efficiently with FAISS
-- Retrieve relevant document context  
-- Interactive question answering via CLI 
-- Fully local execution using a local LLM (no OpenAI API required)
+Chat With Any PDF enables users to:
+- Upload a PDF
+- Parse and chunk its contents
+- Generate embeddings in memory
+- Ask natural language questions
+- Receive answers grounded in the document
+
+All processing happens locally and ephemerally, making this project ideal for learning, experimentation, and low-overhead deployments.
+
+---
+
+## 🎯 Project Category
+
+Document QA (Pre-Vector DB Architecture)
+
+This repository focuses on core building blocks of document-based AI systems before introducing vector databases, long-term memory, or RAG pipelines.
+
+---
+
+## 🧠 What This Project Demonstrates
+📑 Document Processing
+- PDF parsing and text extraction
+- Handling multi-page and structured documents
+
+✂️ Chunking Strategies
+- Fixed-size chunking
+- Overlap management
+- Context preservation techniques
+
+🔢 Embeddings
+- In-memory embedding generation
+- Similarity search without persistence
+- Trade-offs of ephemeral embeddings
+
+🧩 Prompt Engineering
+- Context injection into prompts
+- Answer grounding using retrieved chunks
+- Reducing hallucinations without a vector DB
+
+🧠 Local LLMs
+- Works with:
+  - Ollama
+  - LM Studio
+- No dependency on paid APIs
+- Fully offline-capable setup
+
+🔗 LangChain Fundamentals
+- Document loaders
+- Text splitters
+- Chains
+- LLM wrappers
+
+
+---
+
+## ❌ What This Project Explicitly Does NOT Do
+To keep the architecture intentionally simple, this project does not include:
+- ❌ Persistent vector databases (FAISS, Chroma, Pinecone, etc.)
+- ❌ Long-term conversational memory
+- ❌ Multi-document or multi-session retrieval
+- ❌ Advanced RAG pipelines
+- ❌ Production-grade observability or tracing
 
 ---
 
