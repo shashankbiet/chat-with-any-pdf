@@ -1,3 +1,5 @@
+import logging
+import os
 from tools import (
     load_documents,
     split_documents,
@@ -8,9 +10,21 @@ from tools import (
     get_prompt,
 )
 
+# Set environment variable to avoid tokenizer parallelism warnings
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+# Configure logging
+logging.basicConfig(
+    format='%(asctime)s.%(msecs)03d - %(levelname)s - %(message)s',
+    datefmt='%H:%M:%S',
+    level=logging.INFO
+)
+logger = logging.getLogger(__name__)
+
 
 def main():
-    documents = load_documents(path = "sample.pdf")
+    file_name = "sample.pdf"
+    documents = load_documents(path=file_name)
 
     chunks = split_documents(documents, chunk_size=1000, chunk_overlap=150)
 
